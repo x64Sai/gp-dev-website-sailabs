@@ -259,13 +259,13 @@
     .app-icon {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
       border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2.5rem;
       margin-bottom: 1.5rem;
+      overflow: hidden;
     }
 
     .app-card h3 {
@@ -450,7 +450,9 @@
       
       <div class="apps-grid">
         <div class="app-card">
-          <div class="app-icon">📱</div>
+          <div class="app-icon">
+            <img src="res/app_icon_SparkVidal.png" alt="SparkVidal" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+          </div>
           <h3>SparkVidal</h3>
           <p>强大的网页视频下载器。</p>
           <div class="app-badges">
@@ -462,7 +464,9 @@
         </div>
 
         <div class="app-card">
-          <div class="app-icon">🎨</div>
+          <div class="app-icon">
+            <img src="res/app_icon_PixelEmulator.png" alt="Pixel Emulator" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+          </div>
           <h3>Pixel Emulator</h3>
           <p>GBA、NES、SNES 多平台游戏模拟器。</p>
           <div class="app-badges">
@@ -474,7 +478,9 @@
         </div>
 
         <div class="app-card">
-          <div class="app-icon">⚡</div>
+          <div class="app-icon">
+            <img src="res/app_icon_MediaKitMaster.png" alt="MediaKit Master" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+          </div>
           <h3>MediaKit Master</h3>
           <p>全能视频转换器。</p>
           <div class="app-badges">
