@@ -3,36 +3,525 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rinsai Software Developer website</title>
+  <title>Rinsai Software</title>
+  <meta name="description" content="Independent mobile app developer creating high-quality, user-friendly applications for iOS and Android.">
   <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: #f9f9f9;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #8b5cf6;
+      --accent: #ec4899;
+      --dark: #0f172a;
+      --dark-light: #1e293b;
+      --gray: #64748b;
+      --light: #f1f5f9;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+      z-index: -1;
+    }
+
+    .hero-background::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+      top: -250px;
+      right: -250px;
+      animation: float 20s infinite;
+    }
+
+    .hero-background::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+      bottom: -200px;
+      left: -200px;
+      animation: float 15s infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -30px) rotate(120deg); }
+      66% { transform: translate(-20px, 20px) rotate(240deg); }
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--white), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease-out 0.2s backwards;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      animation: fadeInUp 1s ease-out 0.4s backwards;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeInUp 1s ease-out 0.6s backwards;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Section Styles */
+    section {
+      padding: 6rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--white), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--gray);
+      font-size: 1.1rem;
+      margin-bottom: 4rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Apps Section */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .app-card {
+      background: var(--dark-light);
+      border-radius: 20px;
       padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .app-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .app-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .app-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .app-card p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .app-badges {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .badge:hover {
+      background: rgba(99, 102, 241, 0.2);
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--dark-light);
+    }
+
+    .contact-content {
+      max-width: 600px;
+      margin: 0 auto;
       text-align: center;
     }
-    h1 {
-      color: #333;
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 3rem;
     }
-    p {
-      color: #666;
+
+    .contact-item {
+      background: rgba(99, 102, 241, 0.05);
+      padding: 2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-5px);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .contact-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .contact-item a {
+      color: var(--primary);
+      text-decoration: none;
       font-size: 1.1rem;
+      transition: color 0.3s;
     }
+
+    .contact-item a:hover {
+      color: var(--secondary);
+    }
+
+    /* Footer */
     footer {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #999;
+      background: var(--dark);
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
-  </style>
+
+    footer p {
+      color: var(--gray);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .apps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+</style>
 </head>
 <body>
-  <h1>App Support</h1>
-  <p>Welcome to the application developer homepage of Rinsai Software.</p>
-  <p>We are committed to developing high-quality and user-friendly mobile applications.</p>
-  <p>For support, please contact: soopstory.c@gmail.com</p>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo">Rinsai Software</div>
+      <ul class="nav-links">
+        <li><a href="#home">首页</a></li>
+        <li><a href="#apps">应用</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-background"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Rinsai Software</h1>
+        <p class="hero-subtitle">打造高质量移动应用</p>
+        <p class="hero-description">
+          专注于开发用户友好、功能强大的 iOS 和 Android 应用程序。
+          以创新和品质为核心，为用户提供卓越的移动体验。
+        </p>
+        <a href="#apps" class="cta-button">探索我的应用</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apps Section -->
+  <section id="apps" class="apps">
+    <div class="container">
+      <h2 class="section-title">我的应用</h2>
+      <p class="section-subtitle">精心打造的移动应用作品集</p>
+      
+      <div class="apps-grid">
+        <div class="app-card">
+          <div class="app-icon">📱</div>
+          <h3>SparkVidal</h3>
+          <p>强大的网页视频下载器。</p>
+          <div class="app-badges">
+            <a href="https://play.google.com/store/apps/details?id=com.sai.qualvidsaver" class="badge">
+              <span>🤖</span>
+              <span>Google Play</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-icon">🎨</div>
+          <h3>Pixel Emulator</h3>
+          <p>GBA、NES、SNES 多平台游戏模拟器。</p>
+          <div class="app-badges">
+            <a href="https://apps.apple.com/us/app/pixel-emulator/id6752566600" class="badge">
+              <span>🍎</span>
+              <span>App Store</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-icon">⚡</div>
+          <h3>MediaKit Master</h3>
+          <p>全能视频转换器。</p>
+          <div class="app-badges">
+            <a href="https://apps.apple.com/us/app/mediakit-master/id6754768925" class="badge">
+              <span>🍎</span>
+              <span>App Store</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-content">
+        <h2 class="section-title">联系我</h2>
+        <p class="section-subtitle">有任何问题或建议？欢迎与我联系</p>
+        
+        <div class="contact-info">
+          <div class="contact-item">
+            <h3>📧 电子邮件</h3>
+            <a href="mailto:soopstory.c@gmail.com">soopstory.c@gmail.com</a>
+          </div>
+          
+          <div class="contact-item">
+            <h3>💬 应用支持</h3>
+            <p style="color: var(--gray); margin-top: 0.5rem;">
+              如需应用技术支持，请通过邮件联系，我会尽快回复您。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    &copy; 2025 Rinsai Software. All rights reserved.
+    <div class="container">
+      <p>&copy; 2025 Rinsai Software. 版权所有</p>
+      <ul class="footer-links">
+        <li><a href="#home">首页</a></li>
+        <li><a href="#apps">应用</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+    </div>
   </footer>
 </body>
 </html>
